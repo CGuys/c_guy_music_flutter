@@ -21,6 +21,10 @@ class $ImagesGen {
   /// File path: images/c_guy_logo.png
   AssetGenImage get cGuyLogo => const AssetGenImage('images/c_guy_logo.png');
 
+  /// File path: images/c_guy_music_logo.png
+  AssetGenImage get cGuyMusicLogo =>
+      const AssetGenImage('images/c_guy_music_logo.png');
+
   /// File path: images/calendar.svg
   SvgGenImage get calendar => const SvgGenImage('images/calendar.svg');
 
@@ -62,6 +66,7 @@ class $ImagesGen {
   List<dynamic> get values => [
         bgMask,
         cGuyLogo,
+        cGuyMusicLogo,
         calendar,
         chat,
         folder,
@@ -78,6 +83,18 @@ class $ImagesGen {
 
 class $ImagesHomeGen {
   const $ImagesHomeGen();
+
+  /// File path: images/home/ic_bottom_box_next.svg
+  SvgGenImage get icBottomBoxNext =>
+      const SvgGenImage('images/home/ic_bottom_box_next.svg');
+
+  /// File path: images/home/ic_bottom_box_play.svg
+  SvgGenImage get icBottomBoxPlay =>
+      const SvgGenImage('images/home/ic_bottom_box_play.svg');
+
+  /// File path: images/home/ic_bottom_box_previous.svg
+  SvgGenImage get icBottomBoxPrevious =>
+      const SvgGenImage('images/home/ic_bottom_box_previous.svg');
 
   /// File path: images/home/ic_home_menu.svg
   SvgGenImage get icHomeMenu =>
@@ -103,14 +120,22 @@ class $ImagesHomeGen {
   SvgGenImage get icHomeMenuSinger =>
       const SvgGenImage('images/home/ic_home_menu_singer.svg');
 
+  /// File path: images/home/ic_home_play_list.svg
+  SvgGenImage get icHomePlayList =>
+      const SvgGenImage('images/home/ic_home_play_list.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
+        icBottomBoxNext,
+        icBottomBoxPlay,
+        icBottomBoxPrevious,
         icHomeMenu,
         icHomeMenuMv,
         icHomeMenuNew,
         icHomeMenuPlaylists,
         icHomeMenuRanking,
-        icHomeMenuSinger
+        icHomeMenuSinger,
+        icHomePlayList
       ];
 }
 

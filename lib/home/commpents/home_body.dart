@@ -1,7 +1,6 @@
 import 'package:c_guy_music_flutter/home/commpents/home_left_menu_box.dart';
 import 'package:c_guy_music_flutter/home/widgets/audio_cover_widget.dart';
 import 'package:c_guy_music_flutter/home/widgets/c_guy_music_logo.dart';
-import 'package:c_guy_music_flutter/page/clean/clean_page.dart';
 import 'package:c_guy_music_flutter/page/home/home_page.dart';
 import 'package:c_guy_music_flutter/resource/assets.gen.dart';
 import 'package:c_guy_music_flutter/welcome/page/welcome_page.dart';

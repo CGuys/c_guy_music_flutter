@@ -64,55 +64,144 @@ class _HomeLeftMenuBoxState extends State<HomeLeftMenuBox> {
               padding: EdgeInsets.zero,
               itemBuilder: (context, index) {
                 final menu = _menuList[index];
-                return TextButton(
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    backgroundColor: Colors.transparent,
-                    foregroundColor: Colors.transparent,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    shape: const RoundedRectangleBorder(),
-                  ),
+                return HomeMenuItem(
+                  icon: menu.icon,
+                  title: menu.title,
+                  isSelected: _currentMenu == index,
                   onPressed: () {
                     setState(() {
                       _currentMenu = index;
                     });
                     widget.onTap(index);
                   },
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 40),
-                      menu.icon.svg(
-                        width: 24,
-                        height: 24,
-                        color: index == _currentMenu ? const Color(0xFFFFDC82) : const Color(0xFFDADADA),
-                      ),
-                      const SizedBox(width: 32),
-                      Text(
-                        menu.title,
-                        style: TextStyle(
-                          color: index == _currentMenu ? const Color(0xFFFFDC82) : const Color(0xFFDADADA),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const Spacer(),
-                      Visibility(
-                        visible: index == _currentMenu,
-                        maintainSize: true,
-                        maintainAnimation: true,
-                        maintainState: true,
-                        child: Container(
-                          height: 30,
-                          width: 3,
-                          color: const Color(0xFFFFDC82),
-                        ),
-                      )
-                    ],
-                  ),
                 );
               },
             ),
           ),
+          HomeMenuItem(
+            icon: Assets.images.home.icHomePlayList,
+            title: '播放列表',
+            widget: Container(
+              margin: const EdgeInsets.only(right: 40),
+              child: const Icon(
+                Icons.add_circle_outline_rounded,
+                size: 20,
+                color: Color(0xFF7A8FA6),
+              ),
+            ),
+          ),
+          ListView.builder(
+            itemCount: 4,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: const Text(
+                  '夏日氛围',
+                  style: TextStyle(
+                    color: Color(0xFF596675),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              );
+            },
+          ),
+
+          // Expanded(
+          //     child: Column(
+          //   children: [
+          //     HomeMenuItem(
+          //       icon: Assets.images.home.icHomePlayList,
+          //       title: '播放列表',
+          //       widget: Container(
+          //         margin: const EdgeInsets.only(right: 40),
+          //         child: const Icon(
+          //           Icons.add_circle_outline_rounded,
+          //           size: 20,
+          //           color: Color(0xFF7A8FA6),
+          //         ),
+          //       ),
+          //     ),
+          //     ListView.builder(
+          //       shrinkWrap: true,
+          //       itemBuilder: (context, index) {
+          //         return const Text(
+          //           '夏日氛围',
+          //           style: TextStyle(
+          //             color: Color(0xFF596675),
+          //             fontSize: 14,
+          //             fontWeight: FontWeight.w600,
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //   ],
+          // ))
+        ],
+      ),
+    );
+  }
+}
+
+class HomeMenuItem extends StatelessWidget {
+  const HomeMenuItem({
+    super.key,
+    this.widget,
+    required this.icon,
+    required this.title,
+    this.isSelected = false,
+    this.onPressed,
+  });
+
+  final SvgGenImage icon;
+  final String title;
+  final bool isSelected;
+  final Widget? widget;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 15),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.transparent,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        shape: const RoundedRectangleBorder(),
+      ),
+      onPressed: onPressed,
+      child: Row(
+        children: [
+          const SizedBox(width: 40),
+          icon.svg(
+            width: 24,
+            height: 24,
+            color: isSelected ? const Color(0xFFFFDC82) : const Color(0xFFDADADA),
+          ),
+          const SizedBox(width: 32),
+          Text(
+            title,
+            style: TextStyle(
+              color: isSelected ? const Color(0xFFFFDC82) : const Color(0xFFDADADA),
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const Spacer(),
+          widget ??
+              Visibility(
+                visible: isSelected,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  height: 30,
+                  width: 3,
+                  color: const Color(0xFFFFDC82),
+                ),
+              )
         ],
       ),
     );
